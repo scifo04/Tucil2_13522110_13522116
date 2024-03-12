@@ -1,7 +1,6 @@
 import React,{useState} from 'react'
 
-function IterationForm() {
-    const [iterationValue, setIterationValue] = useState('');
+function IterationForm({iterationValue,setIterationValue}) {
     return (
         <div>
             <p>Iteration</p>
