@@ -1,0 +1,7 @@
+.parent {
+    white-space: nowrap;
+}
+
+.inoneline {
+   display: inline-block; 
+}
