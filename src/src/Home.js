@@ -3,6 +3,7 @@ import ControlPointForm from './component/ControlPointForm.js';
 import IterationForm from './component/IterationForm.js';
 import PointsForm from './component/PointsForm.js';
 import InsertForm from './component/InsertForm.js';
+import Canvas from './component/Canvas.js';
 import './Homestyle.css';
 
 function Home() {
@@ -10,6 +11,7 @@ function Home() {
     const [iterationValue, setIterationValue] = useState('');
     const [numberOfForms, setNumberOfForms] = useState(0);
     const [points, setPoints] = useState([]);
+    const [uploadedPoints, setUploadedPoints] = useState([]); 
 
     const addPoint = (newPoint,val) => {
         console.log('Added point: ',newPoint,val);
@@ -41,6 +43,8 @@ function Home() {
         });
     };
 
+
+    
     return (
         <div className="center">
             <h1>Bezier Curve Generator</h1>
@@ -50,7 +54,8 @@ function Home() {
             {[...Array(numberOfForms)].map((_, index) => (
                 <PointsForm key={index} index={index} points={points} setPoints={setPoints} addPoint={addPoint} />
             ))}
-            <InsertForm controlValue={controlValue} iterationValue={iterationValue} points={points} addPoint={addPoint}/>
+            <InsertForm controlValue={controlValue} iterationValue={iterationValue} points={points} addPoint={addPoint} setUploadedPoints={setUploadedPoints}/>
+            <Canvas uploadedPoints={uploadedPoints}/>
         </div>
     );
 }

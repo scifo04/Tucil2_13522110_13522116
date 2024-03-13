@@ -1,8 +1,8 @@
 package backend
 
 type Point struct {
-	X float64
-	Y float64
+	X float64 `json:"x"`
+	Y float64 `json:"y"`
 }
 
 func Create_Point(X float64, Y float64) Point {
