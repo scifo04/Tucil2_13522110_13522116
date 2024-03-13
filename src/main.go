@@ -60,12 +60,12 @@ func handleInsert(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(responseData)
 
-	backend.Back_Main(pointDataGlobale)
+	backend.Back_Main()
 }
 
 func main() {
-	var point backend.Point = backend.Create_Point(2,3)
-	fmt.Println(point.X,point.Y)
+	var point backend.Point = backend.Create_Point(2, 3)
+	fmt.Println(point.X, point.Y)
 	http.HandleFunc("/", handleInsert)
 	fmt.Println("Server listening on port 8000...")
 	http.ListenAndServe(":8000", nil)
