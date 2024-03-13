@@ -1,17 +1,14 @@
 package main
 
 import (
+	backend "app/util/lib"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 )
 
-type PointData struct {
-	ControlValue   int      `json:"controlValue"`
-	IterationValue int      `json:"iterationValue"`
-	Points         []string `json:"points"`
-}
+var pointDataGlobale backend.PointData
 
 func handleInsert(w http.ResponseWriter, r *http.Request) {
 	// Allow requests from any origin
@@ -45,10 +42,9 @@ func handleInsert(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var pointData PointData
+	// var pointData PointData
 	fmt.Println("Request body:", string(requestBody))
-	if err := json.Unmarshal(requestBody, &pointData); err != nil {
-        fmt.Println("YES IT FAILED HERE")
+	if err := json.Unmarshal(requestBody, &pointDataGlobale); err != nil {
 		http.Error(w, "Failed to parse request body", http.StatusBadRequest)
 		return
 	}
@@ -57,15 +53,19 @@ func handleInsert(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Request body:", string(requestBody))
 
 	// Now you have access to pointData.ControlValue, pointData.IterationValue, pointData.Points
-	fmt.Printf("Received data: %+v\n", pointData)
+	fmt.Printf("Received data: %+v\n", pointDataGlobale)
 
 	// Optionally, you can send a response back to the client
 	responseData := map[string]string{"message": "Received data successfully"}
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(responseData)
+
+	backend.Back_Main(pointDataGlobale)
 }
 
 func main() {
+	var point backend.Point = backend.Create_Point(2,3)
+	fmt.Println(point.X,point.Y)
 	http.HandleFunc("/", handleInsert)
 	fmt.Println("Server listening on port 8000...")
 	http.ListenAndServe(":8000", nil)
