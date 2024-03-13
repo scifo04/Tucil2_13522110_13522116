@@ -1,10 +1,16 @@
-import React,{useState} from 'react'
+import React from 'react'
+import NumericInput from 'react-numeric-input'
 
 function IterationForm({iterationValue,setIterationValue}) {
+    const handleChange = (value) => {
+        if (value !== null && value !== undefined) {
+            setIterationValue(value);
+        }
+    }
     return (
         <div>
             <p>Iteration</p>
-            <input type={Number} value={iterationValue} onChange={(e)=>setIterationValue(e.target.value)}></input>
+            <NumericInput min={0} value={iterationValue} onChange={handleChange}></NumericInput>
         </div>
     );
 }

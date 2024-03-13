@@ -46,7 +46,7 @@ function Home() {
             <h1>Bezier Curve Generator</h1>
             <p>Generate your curve here</p>
             <ControlPointForm controlValue={controlValue} setControlValue={setControlValue} setNumberOfForms={setNumberOfForms} />
-            <IterationForm />
+            <IterationForm iterationValue={iterationValue} setIterationValue={setIterationValue}/>
             {[...Array(numberOfForms)].map((_, index) => (
                 <PointsForm key={index} index={index} points={points} setPoints={setPoints} addPoint={addPoint} />
             ))}

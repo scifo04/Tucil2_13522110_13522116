@@ -3,7 +3,7 @@ import React from 'react'
 function InsertForm({controlValue, iterationValue, points, addPoint}) {
     const handleClick = async () => {
         try {
-            const response = await fetch('http://your-go-server-url', {
+            const response = await fetch('http://localhost:8000', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
