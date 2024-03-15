@@ -1,50 +1,65 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-function Canvas({ uploadedPoints }) {
+function Canvas({ uploadedPoints, points }) {
+    const canvasRef = useRef(null);
+
     useEffect(() => {
-        // Get the canvas element
-        var canvas = document.getElementById("bezier");
-        var ctx = canvas.getContext("2d");
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext("2d");
 
-        // Draw function to draw points and lines
-        function draw() {
+        let requestId;
+
+        const draw = () => {
             // Clear the canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+        
+            // Translate to center of canvas and reverse y-axis
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.scale(1, -1);
+        
             // Draw points
-            uploadedPoints?.forEach(function(point) {
+            for (let i = 0; i < uploadedPoints.length; i++) {
+                const point = uploadedPoints[i];
                 if (point?.x !== undefined && point?.y !== undefined) {
                     ctx.beginPath();
-                    ctx.arc(point.x*50, point.y*50, 5, 0, Math.PI * 2);
+                    ctx.arc(point.x * 50, point.y * 50, 2, 0, Math.PI * 2);
                     ctx.fillStyle = "red";
                     ctx.fill();
                     ctx.closePath();
                 }
-            });
-
-            // Draw lines
-            if (uploadedPoints?.length > 1) {
-                ctx.beginPath();
-                ctx.moveTo(uploadedPoints[0]?.x*50, uploadedPoints[0]?.y*50);
-                for (var i = 1; i < uploadedPoints.length; i++) {
-                    if (uploadedPoints[i]?.x !== undefined && uploadedPoints[i]?.y !== undefined) {
-                        ctx.lineTo(uploadedPoints[i].x*50, uploadedPoints[i].y*50);
-                    }
+        
+                // Draw lines up to current point
+                if (i > 0) {
+                    ctx.beginPath();
+                    ctx.moveTo(uploadedPoints[i - 1].x * 50, uploadedPoints[i - 1].y * 50);
+                    ctx.lineTo(uploadedPoints[i].x * 50, uploadedPoints[i].y * 50);
+                    ctx.strokeStyle = "blue";
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                    ctx.closePath();
                 }
-                ctx.strokeStyle = "blue";
-                ctx.lineWidth = 1;
-                ctx.stroke(); // Stroke after all points are connected
-                ctx.closePath(); // Close the path after drawing the line
             }
-        }
+        
+            // Reset transformation for other drawings
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+        
+            // Call requestAnimationFrame recursively
+            requestId = requestAnimationFrame(draw);
+        };
+        
 
-        // Call the draw function
+        // Start the animation loop
         draw();
-    }, [uploadedPoints]); // Depend on uploadedPoints to redraw when it changes
+
+        // Clean up by canceling the animation frame when component unmounts
+        return () => {
+            cancelAnimationFrame(requestId);
+        };
+    }, [uploadedPoints]);
 
     return (
-        <div style={{ justifyContent: 'center',marginTop:"20px",marginBottom:"20px" }}>
-            <canvas id="bezier" width="500" height="800" style={{ border: '1px solid black' }}></canvas>
+        <div style={{ justifyContent: 'center', marginTop: "20px", marginBottom: "20px" }}>
+            <canvas ref={canvasRef} width="500" height="500" style={{ border: '1px solid black' }}></canvas>
         </div>
     );
 }

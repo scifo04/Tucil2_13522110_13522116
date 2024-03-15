@@ -18,7 +18,7 @@ function PointsForm({ index, points, setPoints, addPoint, numberOfForms }) {
     return (
         <div>
             <div className="parent">
-                <p>X,Y {index + 1}</p>
+                <p>X{index+1} ,Y{index + 1}</p>
                 <input type="text" className="inoneline" name="x" style={{ margin: '10px' }} onChange={handleInputChange} required />
                 <input type="text" className="inoneline" name="y" style={{ margin: '10px' }} onChange={handleInputChange} required />
             </div>

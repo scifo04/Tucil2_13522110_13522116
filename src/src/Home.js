@@ -4,6 +4,7 @@ import IterationForm from './component/IterationForm.js';
 import PointsForm from './component/PointsForm.js';
 import InsertForm from './component/InsertForm.js';
 import Canvas from './component/Canvas.js';
+import BZER_PIC from './BZER.png';
 import './Homestyle.css';
 
 function Home() {
@@ -46,16 +47,28 @@ function Home() {
 
     
     return (
-        <div className="center">
-            <h1>Bezier Curve Generator</h1>
-            <p>Generate your curve here</p>
-            <ControlPointForm controlValue={controlValue} setControlValue={setControlValue} setNumberOfForms={setNumberOfForms} />
-            <IterationForm iterationValue={iterationValue} setIterationValue={setIterationValue}/>
-            {[...Array(numberOfForms)].map((_, index) => (
-                <PointsForm key={index} index={index} points={points} setPoints={setPoints} addPoint={addPoint} />
-            ))}
-            <InsertForm controlValue={controlValue} iterationValue={iterationValue} points={points} addPoint={addPoint} setUploadedPoints={setUploadedPoints}/>
-            <Canvas uploadedPoints={uploadedPoints}/>
+        <div>
+            <div className='topnav'>  
+                <img src={BZER_PIC} alt='' width="70px" height="70px" style={{display:'inline-block'}}></img>
+                <h1 style={{display:'inline-block'}}>BezierCurveGenerator</h1>
+            </div>
+            <div className='center'>
+                <div className="first-section">
+                    <h1>Bezier Curve Generator</h1>
+                    <p>Generate your curve here</p>
+                    <ControlPointForm controlValue={controlValue} setControlValue={setControlValue} setNumberOfForms={setNumberOfForms} />
+                    <IterationForm iterationValue={iterationValue} setIterationValue={setIterationValue}/>
+                </div>
+                <div className='second-section'>
+                    <div className='insert-section'>
+                        {[...Array(numberOfForms)].map((_, index) => (
+                            <PointsForm key={index} index={index} points={points} setPoints={setPoints} addPoint={addPoint} />
+                        ))}
+                    </div>
+                    <InsertForm controlValue={controlValue} iterationValue={iterationValue} points={points} addPoint={addPoint} setUploadedPoints={setUploadedPoints}/>
+                    <Canvas uploadedPoints={uploadedPoints} points={points}/>
+                </div>
+            </div>
         </div>
     );
 }
