@@ -4,18 +4,21 @@ import (
 	"fmt"
 	"math"
 	"strconv"
+	"time"
 )
 
 type PointData struct {
 	ControlValue   int      `json:"controlValue"`
 	IterationValue int      `json:"iterationValue"`
 	Points         []string `json:"points"`
+	IsOn           bool     `json:"isOn`
 }
 
 type PointData_Numeric struct {
 	ControlValue   int
 	IterationValue int
 	Points         []Point
+	IsOn           bool
 }
 
 var PointsGlobale []Point
@@ -24,6 +27,7 @@ func Reconvert_PointData(x PointData) PointData_Numeric {
 	var temp_Numeric PointData_Numeric
 	temp_Numeric.ControlValue = x.ControlValue
 	temp_Numeric.IterationValue = x.IterationValue
+	temp_Numeric.IsOn = x.IsOn
 	for i := 0; i < len(x.Points); i++ {
 		if i%2 == 0 {
 			var floated_val float64
@@ -116,15 +120,22 @@ func Bezier_Line(x PointData_Numeric, iteration_counter int) {
 	}
 }
 
-func Back_Main(x PointData) []Point {
+func Back_Main(x PointData) ([]Point,string) {
 	var new_Point PointData_Numeric = Reconvert_PointData(x)
 	var PointsGlobalNew []Point
 	PointsGlobale = PointsGlobalNew
-	Bezier_Line(new_Point, 1)
+	start := time.Now();
+	if (new_Point.IsOn) {
+		Bezier_Line(new_Point, 1)
+	} else {
+		PointsGlobale = TraceCurve(new_Point)
+	}
+	timeElapsed := time.Since(start);
+	var string_time string = "Execution Time: "+strconv.FormatFloat(float64(timeElapsed.Milliseconds()),'f',-1,64)+" ms.";
+	fmt.Println(string_time)
 	PointsGlobale = append(PointsGlobale, new_Point.Points[x.ControlValue])
 	// fmt.Println(new_Point.ControlValue)
 	// fmt.Println(new_Point.IterationValue)
 	// fmt.Println(new_Point.Points)
-	fmt.Println(PointsGlobale)
-	return PointsGlobale
+	return PointsGlobale,string_time
 }

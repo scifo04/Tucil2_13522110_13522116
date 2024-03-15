@@ -56,15 +56,18 @@ func handleInsert(w http.ResponseWriter, r *http.Request) {
 	// Now you have access to pointData.ControlValue, pointData.IterationValue, pointData.Points
 	fmt.Printf("Received data: %+v\n", pointDataGlobale)
 
-	gottenPoint = backend.Back_Main(pointDataGlobale)
+	var time_string string;
+	gottenPoint,time_string = backend.Back_Main(pointDataGlobale)
 	
 	// Optionally, you can send a response back to the client
 	responseData := struct {
 		Message     string   `json:"message"`
 		GottenPoints []backend.Point `json:"gottenPoint"`
+		Time_String string `json:"time_string"`
 	}{
 		Message:     "Received data successfully",
 		GottenPoints: gottenPoint,
+		Time_String: time_string,
 	}
 
 	w.Header().Set("Content-Type", "application/json")

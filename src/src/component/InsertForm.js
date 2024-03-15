@@ -1,6 +1,6 @@
 import React from 'react'
 
-function InsertForm({controlValue, iterationValue, points, addPoint, setUploadedPoints}) {
+function InsertForm({controlValue, iterationValue, points, isOn, addPoint, setUploadedPoints, setTimeTaken}) {
     const handleClick = async () => {
         try {
             const response = await fetch('http://localhost:8000', {
@@ -12,6 +12,7 @@ function InsertForm({controlValue, iterationValue, points, addPoint, setUploaded
                     controlValue: controlValue,
                     iterationValue: iterationValue,
                     points: points,
+                    isOn: isOn,
                 }),
             });
 
@@ -21,6 +22,7 @@ function InsertForm({controlValue, iterationValue, points, addPoint, setUploaded
 
             const responseData = await response.json();
             setUploadedPoints(responseData.gottenPoint)
+            setTimeTaken(responseData.time_string)
             console.log('Response from Go server:', responseData);
         } catch (error) {
             console.error('Error:', error);
