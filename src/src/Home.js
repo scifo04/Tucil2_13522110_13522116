@@ -5,6 +5,7 @@ import PointsForm from './component/PointsForm.js';
 import InsertForm from './component/InsertForm.js';
 import Canvas from './component/Canvas.js';
 import OnOff from './component/OnOff.js';
+import Mefs from './component/Mafs.js';
 import BZER_PIC from './BZER.png';
 import './Homestyle.css';
 
@@ -71,7 +72,10 @@ function Home() {
                     <OnOff isOn={isOn} setIsOn={setIsOn}/>
                     <div style={{marginBottom:"20px",marginTop:"20px"}}>{timeTaken}</div>
                     <InsertForm controlValue={controlValue} iterationValue={iterationValue} points={points} isOn={isOn} addPoint={addPoint} setUploadedPoints={setUploadedPoints} setTimeTaken={setTimeTaken}/>
-                    <Canvas uploadedPoints={uploadedPoints} points={points}/>
+                </div>
+                <div className='third-section'>
+                    <h1>Result</h1>
+                    <Mefs uploadedPoints={uploadedPoints} points={points}/>
                 </div>
             </div>
         </div>

@@ -59,7 +59,7 @@ function Canvas({ uploadedPoints, points }) {
 
     return (
         <div style={{ justifyContent: 'center', marginTop: "20px", marginBottom: "20px" }}>
-            <canvas ref={canvasRef} width="500" height="500" style={{ border: '1px solid black' }}></canvas>
+            <canvas ref={canvasRef} width="1000" height="700" style={{ border: '1px solid black' }}></canvas>
         </div>
     );
 }

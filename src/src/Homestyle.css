@@ -52,6 +52,20 @@
     border-radius: 20px;
 }
 
+.third-section {
+    background-color: #9c3c00;
+    box-shadow: 7px 7px 7px 7px #232323;
+    width: 85%;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 20px;
+}
+
 .insert-section {
     background-color: #343434;
     width: 90%;
