@@ -23,7 +23,7 @@ function Canvas({ uploadedPoints, points }) {
                 if (point?.x !== undefined && point?.y !== undefined) {
                     ctx.beginPath();
                     ctx.arc(point.x * 50, point.y * 50, 2, 0, Math.PI * 2);
-                    ctx.fillStyle = "red";
+                    ctx.fillStyle = "black";
                     ctx.fill();
                     ctx.closePath();
                 }
@@ -33,7 +33,7 @@ function Canvas({ uploadedPoints, points }) {
                     ctx.beginPath();
                     ctx.moveTo(uploadedPoints[i - 1].x * 50, uploadedPoints[i - 1].y * 50);
                     ctx.lineTo(uploadedPoints[i].x * 50, uploadedPoints[i].y * 50);
-                    ctx.strokeStyle = "blue";
+                    ctx.strokeStyle = "white";
                     ctx.lineWidth = 1;
                     ctx.stroke();
                     ctx.closePath();
