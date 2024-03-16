@@ -10,27 +10,21 @@ import (
 
 var pointDataGlobale backend.PointData
 var gottenPoint []backend.Point
+var controlPoint []backend.Point
 
 func handleInsert(w http.ResponseWriter, r *http.Request) {
-	// Allow requests from any origin
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
-	// Allow the POST method
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
 
-	// Allow the Content-Type header
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 
 	if r.Method == http.MethodOptions {
-		// Respond with HTTP OK status
 		w.WriteHeader(http.StatusOK)
 		return
 	}
 
-	// Set response content type
 	w.Header().Set("Content-Type", "application/json")
-
-	// fmt.Println(r.Method, http.MethodPost)
 
 	if r.Method != http.MethodPost {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
@@ -43,30 +37,27 @@ func handleInsert(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// var pointData PointData
-	// fmt.Println("Request body:", string(requestBody))
 	if err := json.Unmarshal(requestBody, &pointDataGlobale); err != nil {
 		http.Error(w, "Failed to parse request body", http.StatusBadRequest)
 		return
 	}
 
-	// Log the request body
 	fmt.Println("Request body:", string(requestBody))
 
-	// Now you have access to pointData.ControlValue, pointData.IterationValue, pointData.Points
 	fmt.Printf("Received data: %+v\n", pointDataGlobale)
 
 	var time_string string;
-	gottenPoint,time_string = backend.Back_Main(pointDataGlobale)
+	gottenPoint,controlPoint,time_string = backend.Back_Main(pointDataGlobale)
 	
-	// Optionally, you can send a response back to the client
 	responseData := struct {
 		Message     string   `json:"message"`
 		GottenPoints []backend.Point `json:"gottenPoint"`
+		ControlPoints []backend.Point `json:"controlPoint"`
 		Time_String string `json:"time_string"`
 	}{
 		Message:     "Received data successfully",
 		GottenPoints: gottenPoint,
+		ControlPoints: controlPoint,
 		Time_String: time_string,
 	}
 

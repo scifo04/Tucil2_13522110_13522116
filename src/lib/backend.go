@@ -120,7 +120,7 @@ func Bezier_Line(x PointData_Numeric, iteration_counter int) {
 	}
 }
 
-func Back_Main(x PointData) ([]Point,string) {
+func Back_Main(x PointData) ([]Point,[]Point,string) {
 	var new_Point PointData_Numeric = Reconvert_PointData(x)
 	var PointsGlobalNew []Point
 	PointsGlobale = PointsGlobalNew
@@ -137,5 +137,5 @@ func Back_Main(x PointData) ([]Point,string) {
 	// fmt.Println(new_Point.ControlValue)
 	// fmt.Println(new_Point.IterationValue)
 	// fmt.Println(new_Point.Points)
-	return PointsGlobale,string_time
+	return PointsGlobale,new_Point.Points,string_time
 }

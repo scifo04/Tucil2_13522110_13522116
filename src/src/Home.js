@@ -15,6 +15,7 @@ function Home() {
     const [numberOfForms, setNumberOfForms] = useState(0);
     const [points, setPoints] = useState([]);
     const [uploadedPoints, setUploadedPoints] = useState([]); 
+    const [controlPoints, setControlPoints] = useState([]);
     const [timeTaken, setTimeTaken] = useState('');
     const [isOn, setIsOn] = useState(false);
 
@@ -71,11 +72,11 @@ function Home() {
                     </div>
                     <OnOff isOn={isOn} setIsOn={setIsOn}/>
                     <div style={{marginBottom:"20px",marginTop:"20px"}}>{timeTaken}</div>
-                    <InsertForm controlValue={controlValue} iterationValue={iterationValue} points={points} isOn={isOn} addPoint={addPoint} setUploadedPoints={setUploadedPoints} setTimeTaken={setTimeTaken}/>
+                    <InsertForm controlValue={controlValue} iterationValue={iterationValue} points={points} isOn={isOn} addPoint={addPoint} setUploadedPoints={setUploadedPoints} setTimeTaken={setTimeTaken} setControlPoints={setControlPoints}/>
                 </div>
                 <div className='third-section'>
                     <h1>Result</h1>
-                    <Mefs uploadedPoints={uploadedPoints} points={points}/>
+                    <Mefs uploadedPoints={uploadedPoints} points={points} controlPoints={controlPoints}/>
                 </div>
             </div>
         </div>
