@@ -32,7 +32,7 @@ function InsertForm({controlValue, iterationValue, points, isOn, addPoint, setUp
     };
     return (
         <div>
-            <button type='button' onClick={handleClick} style={{fontFamily:"PROXON",fontSize:"20px",border:"0",boxShadow:"0px 0px 30px 15px #820000",borderRadius:"10px",backgroundColor:"#0f0f0f",color:"#820000",width:"100px",height:"30px"}}>Insert</button>
+            <button type='button' onClick={handleClick} style={{fontFamily:"PROXON",fontSize:"20px",border:"0",borderRadius:"10px",backgroundColor:"#0f0f0f",color:"#cc0000",width:"100px",height:"30px"}}>Insert</button>
         </div>
     );
 }

@@ -26,9 +26,10 @@ var PointsGlobale []Point
 func Reconvert_PointData(x PointData) PointData_Numeric {
 	var temp_Numeric PointData_Numeric
 	temp_Numeric.ControlValue = x.ControlValue
+	fmt.Println(2*(x.ControlValue+1))
 	temp_Numeric.IterationValue = x.IterationValue
 	temp_Numeric.IsOn = x.IsOn
-	for i := 0; i < len(x.Points); i++ {
+	for i := 0; i < 2*(x.ControlValue+1); i++ {
 		if i%2 == 0 {
 			var floated_val float64
 			floated_val, _ = strconv.ParseFloat(x.Points[i], 64)
