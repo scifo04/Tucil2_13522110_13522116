@@ -99,43 +99,42 @@ func Bezier_Line(x PointData_Numeric, iteration_counter int) {
 		PointsGlobale = append(PointsGlobale, constructed_point[len(constructed_point)-1][0])
 	} else {
 		var constructed_point [][]Point = Construct_List_Mid_Point(x.Points)
-		var point_1, point_2 []Point
-		point_1 = append(point_1, x.Points[0])
-		for i := 0; i < x.ControlValue; i++ {
-			point_1 = append(point_1, constructed_point[i][0])
-		}
-		for i := 0; i < x.ControlValue; i++ {
-			point_2 = append(point_2, constructed_point[x.ControlValue-1-i][i])
-		}
-		point_2 = append(point_2, x.Points[len(x.Points)-1])
 		var x_1 PointData_Numeric
 		var x_2 PointData_Numeric
-		x_1.ControlValue = x.ControlValue
-		x_2.ControlValue = x.ControlValue
+
+		x_1.Points = append(x_1.Points, x.Points[0])
+		for i := 0; i < x.ControlValue; i++ {
+			x_1.Points = append(x_1.Points, constructed_point[i][0])
+		}
+		for i := 0; i < x.ControlValue; i++ {
+			x_2.Points = append(x_2.Points, constructed_point[x.ControlValue-1-i][i])
+		}
+		x_2.Points = append(x_2.Points, x.Points[len(x.Points)-1])
+
+		x_1.ControlValue, x_2.ControlValue = x.ControlValue, x.ControlValue
 		x_1.IterationValue, x_2.IterationValue = x.IterationValue, x.IterationValue
-		x_1.Points = point_1
-		x_2.Points = point_2
+
 		Bezier_Line(x_1, iteration_counter+1)
 		Bezier_Line(x_2, iteration_counter+1)
 	}
 }
 
-func Back_Main(x PointData) ([]Point,[]Point,string) {
+func Back_Main(x PointData) ([]Point, []Point, string) {
 	var new_Point PointData_Numeric = Reconvert_PointData(x)
 	var PointsGlobalNew []Point
 	PointsGlobale = PointsGlobalNew
-	start := time.Now();
-	if (new_Point.IsOn) {
+	start := time.Now()
+	if new_Point.IsOn {
 		Bezier_Line(new_Point, 1)
 	} else {
 		PointsGlobale = TraceCurve(new_Point)
 	}
-	timeElapsed := time.Since(start);
-	var string_time string = "Execution Time: "+strconv.FormatFloat(float64(timeElapsed.Milliseconds()),'f',-1,64)+" ms.";
+	timeElapsed := time.Since(start)
+	var string_time string = "Execution Time: " + strconv.FormatFloat(float64(timeElapsed.Milliseconds()), 'f', -1, 64) + " ms."
 	fmt.Println(string_time)
 	PointsGlobale = append(PointsGlobale, new_Point.Points[x.ControlValue])
 	// fmt.Println(new_Point.ControlValue)
 	// fmt.Println(new_Point.IterationValue)
 	// fmt.Println(new_Point.Points)
-	return PointsGlobale,new_Point.Points,string_time
+	return PointsGlobale, new_Point.Points, string_time
 }
