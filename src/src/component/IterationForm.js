@@ -1,5 +1,6 @@
 import React from 'react'
 import NumericInput from 'react-numeric-input'
+import "./../font/PROXON.TTF"
 
 function IterationForm({iterationValue,setIterationValue}) {
     const handleChange = (value) => {
@@ -9,7 +10,7 @@ function IterationForm({iterationValue,setIterationValue}) {
     }
     return (
         <div>
-            <p>Iteration</p>
+            <p style={{fontFamily:"PROXON",color:"#ff0000"}}>Iteration</p>
             <NumericInput min={0} value={iterationValue} onChange={handleChange}></NumericInput>
         </div>
     );

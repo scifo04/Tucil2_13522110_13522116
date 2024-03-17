@@ -1,5 +1,6 @@
 import React from 'react'
 import NumericInput from 'react-numeric-input'
+import "./../font/PROXON.TTF"
 
 function ControlPointForm({controlValue,setControlValue,setNumberOfForms}) {
     const handleChange = (value) => {
@@ -10,7 +11,7 @@ function ControlPointForm({controlValue,setControlValue,setNumberOfForms}) {
     }
     return (
         <div>
-            <p>Control Point</p>
+            <p style={{fontFamily:"PROXON",color:"#ff0000"}}>Control Point</p>
             <NumericInput min={1} value={controlValue} onChange={handleChange}></NumericInput>
         </div>
     );

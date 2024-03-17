@@ -7,6 +7,9 @@ import Canvas from './component/Canvas.js';
 import OnOff from './component/OnOff.js';
 import Mefs from './component/Mafs.js';
 import BZER_PIC from './BZER.png';
+import "./font/TOURNER.TTF"
+import "./font/PROXON.TTF"
+import "./font/KRABBY PATTY.TTF"
 import './Homestyle.css';
 
 function Home() {
@@ -55,12 +58,12 @@ function Home() {
         <div>
             <div className='topnav'>  
                 <img src={BZER_PIC} alt='' width="70px" height="70px" style={{display:'inline-block'}}></img>
-                <h1 style={{display:'inline-block'}}>BezierCurveGenerator</h1>
+                <h1 style={{display:'inline-block',fontFamily:"KRABBY PATTY"}}>BezierCurveGenerator</h1>
             </div>
             <div className='center'>
                 <div className="first-section">
-                    <h1>Bezier Curve Generator</h1>
-                    <p>Generate your curve here</p>
+                    <h1 style={{fontFamily:"TOURNER",color:"#c00000"}}>Bezier Curve Generator</h1>
+                    <p style={{fontFamily:"PROXON",color:"#ee0000"}}>Generate your curve here</p>
                     <ControlPointForm controlValue={controlValue} setControlValue={setControlValue} setNumberOfForms={setNumberOfForms} />
                     <IterationForm iterationValue={iterationValue} setIterationValue={setIterationValue}/>
                 </div>
@@ -75,7 +78,7 @@ function Home() {
                     <InsertForm controlValue={controlValue} iterationValue={iterationValue} points={points} isOn={isOn} addPoint={addPoint} setUploadedPoints={setUploadedPoints} setTimeTaken={setTimeTaken} setControlPoints={setControlPoints}/>
                 </div>
                 <div className='third-section'>
-                    <h1>Result</h1>
+                    <h1 style={{fontFamily:"TOURNER",color:"#ee0000"}}>Result</h1>
                     <Mefs uploadedPoints={uploadedPoints} points={points} controlPoints={controlPoints}/>
                 </div>
             </div>

@@ -3,10 +3,10 @@
 }
 
 .topnav {
-    background-color: #333333;
-    box-shadow: 7px 7px 7px 7px #232323;
     overflow: hidden;
     height: 100px;
+    position: sticky;
+    top: 0;
 }
 
 .topnav h1 {
@@ -29,23 +29,26 @@
 }
 
 .first-section {
-    background-color: #820000;
-    box-shadow: 7px 7px 7px 7px #232323;
+    background-color: #0f0f0f;
+    box-shadow: 0 0 30px 15px #480000;
     padding-bottom: 20px;
     border-radius: 20px;
     width: 50%;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 30px;
     padding-top: 1px;
     padding-bottom: 40px;
 }
 
 .second-section {
-    background-color: #841c01;
-    box-shadow: 7px 7px 7px 7px #232323;
+    background-color: #b00000;
+    box-shadow: 0 0 10px 5px #ad0000,
+              0 0 20px 7px #6c0000,
+              0 0 25px 20px #370000,
+              0 0 30px 25px #250000;
     width: 35%;
     margin: auto;
-    margin-top: 40px;
+    margin-top: 60px;
     margin-bottom: 30px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -53,11 +56,11 @@
 }
 
 .third-section {
-    background-color: #9c3c00;
-    box-shadow: 7px 7px 7px 7px #232323;
+    background-color: #171717;
+    box-shadow: 0 0 30px 15px #9e0000;
     width: 85%;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 70px;
     margin-bottom: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -67,7 +70,7 @@
 }
 
 .insert-section {
-    background-color: #343434;
+    background-color: #151515;
     width: 90%;
     margin: auto;
     margin-top: 10px;
