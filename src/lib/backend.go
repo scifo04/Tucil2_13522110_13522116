@@ -26,7 +26,7 @@ var PointsGlobale []Point
 func Reconvert_PointData(x PointData) PointData_Numeric {
 	var temp_Numeric PointData_Numeric
 	temp_Numeric.ControlValue = x.ControlValue
-	fmt.Println(2*(x.ControlValue+1))
+	fmt.Println(2 * (x.ControlValue + 1))
 	temp_Numeric.IterationValue = x.IterationValue
 	temp_Numeric.IsOn = x.IsOn
 	for i := 0; i < 2*(x.ControlValue+1); i++ {
@@ -81,11 +81,10 @@ func findpoint(P []Point, t float64) []Point {
 
 func TraceCurve(input PointData_Numeric) []Point {
 	var result []Point
-	add := 0.5 * math.Pow(0.5, float64(input.IterationValue-1))
+	add := math.Pow(0.5, float64(input.IterationValue))
 	t := 0.0
 
-	for t <= 1 {
-		fmt.Println(t)
+	for t < 1 {
 		result = append(result, findpoint(input.Points, t)...)
 		t = t + add
 	}
@@ -134,8 +133,6 @@ func Back_Main(x PointData) ([]Point, []Point, string) {
 	var string_time string = "Execution Time: " + strconv.FormatFloat(float64(timeElapsed.Milliseconds()), 'f', -1, 64) + " ms."
 	fmt.Println(string_time)
 	PointsGlobale = append(PointsGlobale, new_Point.Points[x.ControlValue])
-	// fmt.Println(new_Point.ControlValue)
-	// fmt.Println(new_Point.IterationValue)
-	// fmt.Println(new_Point.Points)
+
 	return PointsGlobale, new_Point.Points, string_time
 }
