@@ -5,6 +5,8 @@
 - [Deskripsi Program](#deskripsi-program)
 - [Requirement Program](#requirements-program)
 - [Set Up dan Build Program](#set-up-dan-build-program)
+- [Home Page](#home-page)
+- [Test](#test)
 - [Author](#author)
 
 ## **Deskripsi Program**
@@ -17,8 +19,58 @@ Repository ini berisi implementasi dalam membangun kurva Bézier dengan algoritm
 </p>
 
 ## **Requirements Program**
+Program ini membutuhkan dua modul yaitu react-numeric-input & mafs. Install kedua modul ini di src (src utama bukan src react).
+1. react-numeric-input:
+     ```bash
+     npm install react-numeric-input --save
+     ```
+2. mafs:
+     ```bash
+     npm install mafs --save
+     ```
 
 ## **Set Up dan Build Program**
+1. Download file .zip
+2. Buka terminal dan pergi ke direktori dari src 
+     ```bash
+     ./Tucil2_13522110_13522116/src
+     ```
+3. Untuk build program masukkan perintah:
+     ```bash
+     npm run build
+     ``` 
+     Cukup lakukan sekali saja
+4. Untuk menjalankan program masukkan perintah 
+     ```bash
+     npm run start
+     ```
+5. Buka satu lagi jendela terminal ddengan direktori yang sama
+6. Lalu masukkan perintah 
+     ```bash
+     go run .
+     ```
+7. Jika diminta untuk `allow access`, tekan tombol `Allow`
+8. Program sudah siap untuk digunakan
+
+## **Home Page**
+<p align="center">
+<img src="test/HomePage.png">
+</p>
+
+## **Test**
+<p align="center">
+
+Input:
+<img src="test/input/test_06_in.png">
+
+Output algoritma brute force:
+
+<img src="test/output/algoritma brute force/test_06_bruteforce.png">
+
+Output algoritma divide and conquer:
+
+<img src="test/output/algoritma divide and conquer/test_06_dnc.png">
+</p>
 
 ## **Author**
 
