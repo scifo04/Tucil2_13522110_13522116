@@ -4,7 +4,7 @@ import "./../../node_modules/mafs/font.css"
 import React, { useState,useEffect } from 'react';
 
 function Mefs({uploadedPoints,points,controlPoints}) {
-    const [origin,setOrigin] = useState([0,0]);
+    const [origin,setOrigin] = useState([0,0,0,0]);
 
     const phase = useMovablePoint([0, 0], {
         constrain: "horizontal",
@@ -24,13 +24,21 @@ function Mefs({uploadedPoints,points,controlPoints}) {
     const control_tail = controlPoints.slice(1,controlPoints.length)
 
     useEffect(() => {
-        const targetPoint = uploadedPoints[Math.ceil((uploadedPoints.length)/2)];
-        const newOrigin = targetPoint ? [targetPoint.x, targetPoint.y] : [0, 0];
-        setOrigin(newOrigin);
+        if (uploadedPoints && uploadedPoints.length > 0) {
+            const smallest_x = Math.min(...uploadedPoints.map(point => point.x));
+            const smallest_y = Math.min(...uploadedPoints.map(point => point.y));
+            const largest_x = Math.max(...uploadedPoints.map(point => point.x));
+            const largest_y = Math.max(...uploadedPoints.map(point => point.y));
+            setOrigin([smallest_x, largest_x, smallest_y, largest_y]);
+        } else {
+            setOrigin([0, 0, 0, 0]);
+        }
     }, [uploadedPoints]);
+    
+    console.log(origin[0],origin[1],origin[2],origin[3])
 
     return (
-        <Mafs zoom={{min:0.1 ,max:4}} viewBox={{x:[origin[0],origin[1]], y:[origin[0],origin[1]], padding:3}}>
+        <Mafs zoom={{min:0.1 ,max:4}} viewBox={{x:[origin[0],origin[1]], y:[origin[2],origin[3]], padding:3}}>
             <Coordinates.Cartesian subdivisions={4}/>
                 {controlPoints.map((control) => (
                     <Point x={control.x} y={control.y} color="#ffff00"></Point>
