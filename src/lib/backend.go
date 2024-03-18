@@ -1,7 +1,6 @@
 package backend
 
 import (
-	"fmt"
 	"math"
 	"strconv"
 	"time"
@@ -26,7 +25,6 @@ var PointsGlobale []Point
 func Reconvert_PointData(x PointData) PointData_Numeric {
 	var temp_Numeric PointData_Numeric
 	temp_Numeric.ControlValue = x.ControlValue
-	fmt.Println(2 * (x.ControlValue + 1))
 	temp_Numeric.IterationValue = x.IterationValue
 	temp_Numeric.IsOn = x.IsOn
 	for i := 0; i < 2*(x.ControlValue+1); i++ {
@@ -131,7 +129,6 @@ func Back_Main(x PointData) ([]Point, []Point, string) {
 	}
 	timeElapsed := time.Since(start)
 	var string_time string = "Execution Time: " + strconv.FormatFloat(float64(timeElapsed.Milliseconds()), 'f', -1, 64) + " ms."
-	fmt.Println(string_time)
 	PointsGlobale = append(PointsGlobale, new_Point.Points[x.ControlValue])
 
 	return PointsGlobale, new_Point.Points, string_time

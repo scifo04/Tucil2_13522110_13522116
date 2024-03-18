@@ -8,18 +8,9 @@ function Mefs({ uploadedPoints, controlPoints }) {
     const [animatedPoints, setAnimatedPoints] = useState([]);
     const [animatedLines, setAnimatedLines] = useState([]);
 
-    // const init = []
-    // for (let i = 0; i < uploadedPoints.length-1; i++) {
-    //     init.push(uploadedPoints[i])
-    // }
-
-    // const tail = []
-    // for (let i = 1; i < uploadedPoints.length; i++) {
-    //     tail.push(uploadedPoints[i])
-    // }
-
     const control_init = controlPoints.slice(0,controlPoints.length-1)
     const control_tail = controlPoints.slice(1,controlPoints.length)
+
     useEffect(() => {
         setAnimatedPoints([]);
         setAnimatedLines([]);
@@ -31,6 +22,12 @@ function Mefs({ uploadedPoints, controlPoints }) {
             setOrigin([smallest_x, largest_x, smallest_y, largest_y]);
 
             // Animation for plotting points
+            let animationSpeed;
+            if (uploadedPoints.length < 100) {
+                animationSpeed = 5000 / uploadedPoints.length;
+            } else {
+                animationSpeed = 0.005; // Adjust as needed for animation speed
+            }
             let pointIndex = 0;
             const pointAnimationInterval = setInterval(() => {
                 if (pointIndex < uploadedPoints.length) {
@@ -50,9 +47,9 @@ function Mefs({ uploadedPoints, controlPoints }) {
                         } else {
                             clearInterval(lineAnimationInterval);
                         }
-                    }, 5000 / uploadedPoints.length); // Adjust the interval as needed for animation speed
+                    }, animationSpeed);
                 }
-            }, 5000 / uploadedPoints.length); // Adjust the interval as needed for animation speed
+            }, animationSpeed);
         } else {
             setOrigin([0, 0, 0, 0]);
             setAnimatedPoints([]);

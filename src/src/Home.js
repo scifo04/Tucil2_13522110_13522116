@@ -3,7 +3,6 @@ import ControlPointForm from './component/ControlPointForm.js';
 import IterationForm from './component/IterationForm.js';
 import PointsForm from './component/PointsForm.js';
 import InsertForm from './component/InsertForm.js';
-import Canvas from './component/Canvas.js';
 import OnOff from './component/OnOff.js';
 import Mefs from './component/Mafs.js';
 import BZER_PIC from './BZER.png';
