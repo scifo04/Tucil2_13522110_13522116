@@ -11,7 +11,8 @@ function ControlPointForm({controlValue,setControlValue,setNumberOfForms}) {
     }
     return (
         <div>
-            <p style={{fontFamily:"PROXON",color:"#ff0000"}}>Control Point</p>
+            <p style={{fontFamily:"PROXON",color:"#ff0000"}}>N-ic Bezier</p>
+            <p style={{fontFamily:"PROXON",color:"#ff0000"}}>Control Point = N+1</p>
             <NumericInput min={1} value={controlValue} onChange={handleChange}></NumericInput>
         </div>
     );
