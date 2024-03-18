@@ -17,8 +17,19 @@ Repository ini berisi implementasi dalam membangun kurva Bézier dengan algoritm
 </p>
 
 ## **Requirements Program**
+Program ini membutuhkan dua modul yaitu react-numeric-input & mafs. Install kedua modul ini di src (src utama bukan src react):
+react-numeric-input: npm install react-numeric-input --save
+mafs : npm install --save mafs
 
 ## **Set Up dan Build Program**
+1. Download file .zip
+2. Buka terminal dan pergi ke direktori dari src ('./Tucil2_13522110_13522116/src')
+3. Masukkan perintah 'npm run build' (Sekali saja)
+4. Masukkan perintah 'npm run start'
+5. Buka terminal satu lagi dan pergi ke direktori yang sama
+6. Masukkan perintah 'go run .'
+7. Jika diminta untuk allow access, tekan tombol 'Allow'
+8. Program sudah siap untuk digunakan
 
 ## **Author**
 
